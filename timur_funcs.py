@@ -8,7 +8,6 @@ from notebook.services.config import ConfigManager
 from IPython.display import clear_output
 from random import randint, randrange, random
 from datetime import date, datetime 
-import pandas as pd
 import time
 import sys
 
