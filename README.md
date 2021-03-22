@@ -1,5 +1,4 @@
-# Timur: the game
-Adventures of Timur: Story of Shit &amp; Courage
+# Adventures of Timur: Story of Shit &amp; Courage
 
 This is a roguelike-adventure game, which trains you how to make important decisions in life.
 
