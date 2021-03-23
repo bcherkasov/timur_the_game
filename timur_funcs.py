@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from notebook.services.config import ConfigManager
 from IPython.display import clear_output
 from random import randint, randrange, random
@@ -21,14 +15,242 @@ day = 1
 
 body = ['рука', 'жопа', 'печень', 'живот', 'нога', 'голова', 'двенадцатиперстная кишка', 'пизда', 'шея']
 
+my_hero = {'name': 'Тимур',
+           'race': 'лезгин',
+           'class': 'варвар',
+           'attack': 10,
+           'def': 8,
+           'hp': 100}
+
+villain = {'name': 'Баал-Зебуб',
+         'race': 'демон',
+         'class': 'туалетный',
+         'attack': 15,
+         'def': 10,
+         'hp': 300}
+
+quest1 = {'quest': 'Как расшифровывается аббревиатура FDEDANRSAOCLONL?',
+          'answ1': 'Freight Dreamed Easy Doing Anything Non-Restrictive Sound And Or Capable Loading Or Not Loading',
+          'answ2': 'Freight Damned Earned, Discharging And Non-Reloaded Ship And Or Cargo Lost Or Not Lost',
+          'answ3': 'Freight Deemed Earned, Discountless And Non-Returnable Ship And Or Cargo Lost Or Not Lost',
+          'correct': 3}
+
+quest2 = {'quest': 'Что означает фраза 1 SPSB AAAA?',
+          'answ1': '1 Safe Port Safe Berth Always Available Always Afloat',
+          'answ2': '1 Scary Policeman Sexy Bitch Always Asphixiates Always Alive',
+          'answ3': '1 Sativa Produces Smoke But Always And Alas Always',
+          'correct': 1}
+
+quest3 = {'quest': 'Сколько часов сталии у судна, погрузившего 3500 т при норме 1000 MTS PER WWD?',
+          'answ1': '72 часа',
+          'answ2': '80 часов',
+          'answ3': '84 часа',
+          'correct': 3}
+
+quest4 = {'quest': 'Что означает STEM?',
+          'answ1': 'Subject To Enough Millets',
+          'answ2': 'Subject To Enough Merchandise',
+          'answ3': 'Subject To Enough Moisture',
+          'correct': 2}
+
+quests = [quest1, quest2, quest3, quest4]
+
 def slowprint(str):
     for letter in str:
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(random() * 0.1 + 0.01)
     print('')
+    
 
 
+def fight_with_demon():
+    
+    for i in range(50):
+    
+        a = randint(1,20)
+        b = randint(1,20)
+        
+        hero_name = my_hero['name'] + ', ' + my_hero['class'] + ' ' + my_hero['race']
+        hero_def = my_hero['def']
+        hero_hp = my_hero['hp']
+        hero_attack = my_hero['attack'] + a
+        villain_name = villain['name'] + ', ' + villain['class'] + ' ' + villain['race']
+        villain_hp = villain['hp']
+        villain_attack = villain['attack'] + b
+        
+        if i > 0 and i % 5 == 0:
+            
+            try:
+                index = int(i/5-1)
+                quiz = quests[index]['quest']
+                slowprint('Неожиданно Тимур получает сообщение от ИА:')
+                print()
+                slowprint('- Проститутки! Пидорасы!')
+                slowprint(quiz)
+                print()
+                print('[1] ' + quests[index]['answ1'])
+                print('[2] ' + quests[index]['answ2'])
+                print('[3] ' + quests[index]['answ3'])
+                answer = input()
+                
+                if int(answer) == quests[index]['correct']:
+                    print()
+                    slowprint('Како-демон охуел от такой эрудированности Тимура и открылся для неожиданного удара!')
+                    hero_attack = my_hero['attack'] + a
+                    
+                    if hero_attack > villain['def']:
+                        
+                        villain_hp -= (hero_attack - villain['def'])
+
+                        if villain_hp > 0:
+                            slowprint(f'Бедный {villain_name}! \nТеперь у него всего {villain_hp} хп')
+                            villain['hp'] = villain_hp
+                            input()
+                        else:
+                            slowprint(f'ДА!!!! Тимур победил {villain_name}! \nТеперь он не сможет никого хватать за яйца!')
+                            input()
+                            return 1
+                            break
+                    else:
+                        slowprint(f'{villain_name}, парировал твой удар, {hero_name}!')
+                    
+                
+            except IndexError:
+                pass
+            
+            
+        print()
+        print(f'ROUND {i+1}')
+        action = input('Выбери действие: [1] атака [2] защита [3] пыхнуть напас')
+        print()
+
+        if action == '1':
+
+            slowprint(f'Тимур ебашит на {hero_attack} урона!')
+            if hero_attack > villain['def']:
+                villain_hp -= (hero_attack - villain['def'])
+
+                if villain_hp > 0:
+                    slowprint(f'Бедный {villain_name}! \nТеперь у него всего {villain_hp} хп')
+                    villain['hp'] = villain_hp
+                    input()
+                else:
+                    slowprint(f'ДА!!!! Тимур победил {villain_name}! \nТеперь он не сможет никого хватать за яйца!')
+                    input()
+                    return 1
+                    break
+
+                
+                slowprint(f'{villain_name}, гасит вас на {villain_attack} урона!')
+
+                if villain_attack > hero_def:
+            
+                    hero_hp -= (villain_attack - hero_def)
+                    my_hero['hp'] = hero_hp
+
+                    if hero_hp > 0:
+                        slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
+                        input()
+                    else:
+                        slowprint(f'{villain_name}, завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                        input()
+                        return 0
+                        break
+
+                else:
+                    slowprint(f'{hero_name}, отбил удар {villain_name}!')
+                    input()
+                
+                
+            else:
+                slowprint(f'{villain_name}, парировал твой удар, {hero_name}!')
+                print()
+                slowprint(f'{villain_name}, гасит вас на {villain_attack} урона!')
+
+                if villain_attack > hero_def:
+            
+                    hero_hp -= (villain_attack - hero_def)
+                    my_hero['hp'] = hero_hp
+
+                    if hero_hp > 0:
+                        slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
+                        input()
+                    else:
+                        slowprint(f'{villain_name}, завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                        input()
+                        return 0
+                        break
+                        
+                else:
+                    slowprint(f'{hero_name}, отбил удар {villain_name}!')
+                    input()
+                    
+            print()
+
+        elif action == '2':
+
+            a = randint(1,20)
+            b = randint(1,20)
+
+            my_hero['def'] += a
+            slowprint(f'Тимур чувствует себя в {a} раз защищеннее! Никакая напасть ему не страшна с презервативами Contex!')
+            input('Пизданись головой об клаву, чтобы продолжить...')
+
+            if villain_attack > hero_def:
+            
+                hero_hp -= (villain_attack - hero_def)
+                my_hero['hp'] = hero_hp
+
+                if hero_hp > 0:
+                    slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
+                    input()
+                else:
+                    slowprint(f'{villain_name}, завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                    input()
+                    return 0
+                    break
+            
+            else:
+                slowprint(f'{hero_name} отбил удар {villain_name}!')
+                input()
+
+            my_hero['def'] = 10
+            print()
+            
+        else:
+            
+            slowprint('Тимур достал косяк, прикурил и предложил затянуться како-демону!')
+            slowprint('Тот отказался, что придало Тимуру уверенности в своих силах!')
+            a = randint(1,20)
+            b = randint(1,10)
+            
+            my_hero['def'] += a
+            my_hero['attack'] +=b
+            hero_def = my_hero['def']
+            slowprint(f'Защита Тимура увеличилась на {a}! Атака Тимура увеличилась на {b}!')
+            print()
+            
+            if villain_attack > hero_def:
+            
+                hero_hp -= (villain_attack - hero_def)
+                my_hero['hp'] = hero_hp
+
+                if hero_hp > 0:
+                    slowprint(f'{villain_name} нормально так навалял Тимуру! \nУ него осталось {hero_hp} хп')
+                    input()
+                else:
+                    slowprint(f'{villain_name} завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                    input()
+                    return 0
+                    break
+            
+            else:
+                slowprint(f'{hero_name}, отбил удар {villain_name}!')
+        
+        print()
+
+  
     
 def wake_up(money, food, mood, shit_counter):
     
@@ -61,8 +283,13 @@ def wake_up(money, food, mood, shit_counter):
     slowprint('Давай вставай, пидрила!')
     slowprint('Пора в порт пиздовать')
     print()
+    print('[1] пойти на работу')
+    print('[2] сходить в магазин за едой')
+    print('[3] пыхнуть травки и подрочить')
+    print('[4] пойти посрать')
+    print('[5] что за нахуй здесь происходит?')
     
-    a = input('[1] пойти на работу [2] сходить в магазин за едой [3] пыхнуть травки и подрочить [4] пойти посрать [5] что за нахуй здесь происходит?')
+    a = input()
     print()
     
     if a == '1' and mood > 0:
@@ -115,7 +342,7 @@ def game():
     shit_counter = 1
     day = 1
    
-    while shit_counter < 10:
+    while shit_counter < 2:
 
         pain = body[randint(0,8)]
 
@@ -226,9 +453,9 @@ def game():
             slowprint('Для того, чтобы посрать, - нужна еда.')
             slowprint('Для того, чтобы купить еды, - нужны деньги.')
             slowprint('Для того, чтобы заработать денег, - нужно подходящее настроение.')
-            slowprint('В общем, все как в жизни')
-            slowprint('Разница лишь в том, что вы Тимур, а Тимур не вы, если вас действительно зовут Тимур')
-            slowprint('Короче, одним словом, наслаждайтесь! Все права вроде бы защищены, но на всякий случай эта программа распространяется по лицензии WTFPL')
+            slowprint('В общем, все как в жизни.')
+            slowprint('Разница лишь в том, что вы Тимур, а Тимур не вы, если вас действительно зовут Тимур.')
+            slowprint('Короче, одним словом, наслаждайтесь! Все права вроде бы защищены, но на всякий случай эта программа распространяется по лицензии WTFPL:')
             slowprint('http://www.wtfpl.net/')
             print()
             input('Пизданись головой об клаву, чтобы продолжить...')
@@ -265,18 +492,47 @@ def game():
             print()
             print(f'ПИЗДА! Како-демон одержал победу на {day} день! Тимур сосет хуй!')
             print()
-            print('  (\-"````"-/)')
-            print('  //^\    /^\\\\')
-            print(' ;/ ~_\  /_~ \;')
-            print(' |  / \\\\// \  |')
-            print('(,  \\0/  \\0/  ,)')
-            print(' |   /    \   |')
-            print(' | (_\.__./_) |')
-            print('  \ \\v-..-v/ /')
-            print('   \ `====\' /')
-            print('    `\\\\\\///\'')
-            print('       \/')
+            slowprint('GAME OVER!!!')
             time.sleep(10)
             break
 
         clear_output()
+        
+    if shit_counter >= 2:
+        slowprint('Неожиданно, что-то склизкое схватило Тимура за яйца!')
+        slowprint("- Неужели, это конец? - лишь промелькнуло в голове у Тимура, когда он резко потянулся рукой и схватил нечто отвратительное наощупь, но в то же время прекрасное демоническое запястье!")
+        slowprint("Тимур с силой потянул на себя и к своему изумлению, разхреначив в хлам унитаз, достал существо ростом с человека, исторгающее пламя и зловонный запах! Но в прикольной шляпке.") 
+        slowprint("- Это КАКО-ДЕМОН 24 уровня!!!")
+        print()
+        print('  (\-"````"-/)')
+        print('  //^\    /^\\\\')
+        print(' ;/ ~_\  /_~ \;')
+        print(' |  / \\\\// \  |')
+        print('(,  \\0/  \\0/  ,)')
+        print(' |   /    \   |')
+        print(' | (_\.__./_) |')
+        print('  \ \\v-..-v/ /')
+        print('   \ `====\' /')
+        print('    `\\\\\\///\'')
+        print('       \/')
+        slowprint('- Тебе пизда, дерьмо-демон!')
+        print()
+        slowprint('- PASMOTRIM, PIDRRRRRRRRR!!!')
+        print()
+        a = fight_with_demon()
+        
+        if a == 1:
+            slowprint(f'ПОЗДРАВЛЯЕМ! Это Победа! Тимур расправился с како-демоном за {day} дней!')
+            print()
+            slowprint('Теперь любой может безбоязненно пойти посрать! А Тимур еще долго в ахуе смотрел на разбитый унитаз и думал, что он будет объяснять Любе...')
+            print()
+            slowprint('А на следующий день Тимур умер от СПИДа')
+            print()
+            slowprint('КОНЕЦ')
+            
+        else:
+            slowprint(f'Это фиаско, братан! Како-демон победил тебя на {day} день!')
+            print()
+            print('GAME OVER!')
+    
+    
