@@ -78,7 +78,7 @@ quest8 = {'quest': 'Имеет ли право фрахтователь, под�
           'correct': 1}
 
 action_quests = [quest1, quest2, quest3, quest4]
-story_quests = [quest5, quest6, quest7, quest8]
+story_quests = [quest5, quest6, quest8, quest7]
 
 def slowprint(str):
     for letter in str:
@@ -179,7 +179,7 @@ def fight_with_demon():
                     hero_hp -= (villain_attack - hero_def)
                     my_hero['hp'] = hero_hp
                     
-                    slowprint(f'{villain_name} херачит на {villain_attack} урона!')
+                    slowprint(f'{villain_name}, херачит на {villain_attack} урона!')
 
                     if hero_hp > 0:
                         slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -205,7 +205,7 @@ def fight_with_demon():
                     hero_hp -= (villain_attack - hero_def)
                     my_hero['hp'] = hero_hp
                     
-                    slowprint(f'{villain_name} херачит на {villain_attack} урона!')
+                    slowprint(f'{villain_name}, херачит на {villain_attack} урона!')
 
                     if hero_hp > 0:
                         slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -236,7 +236,7 @@ def fight_with_demon():
                 hero_hp -= (villain_attack - hero_def)
                 my_hero['hp'] = hero_hp
                 
-                slowprint(f'{villain_name} херачит на {villain_attack} урона!')
+                slowprint(f'{villain_name}, херачит на {villain_attack} урона!')
 
                 if hero_hp > 0:
                     slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -248,7 +248,7 @@ def fight_with_demon():
                     break
             
             else:
-                slowprint(f'{hero_name} отбил удар {villain_name}!')
+                slowprint(f'{hero_name}, отбил удар {villain_name}!')
                 input()
 
             my_hero['def'] = 10
@@ -272,13 +272,13 @@ def fight_with_demon():
                 hero_hp -= (villain_attack - hero_def)
                 my_hero['hp'] = hero_hp
                 
-                slowprint(f'{villain_name} херачит на {villain_attack} урона!')
+                slowprint(f'{villain_name}, херачит на {villain_attack} урона!')
 
                 if hero_hp > 0:
-                    slowprint(f'{villain_name} нормально так навалял Тимуру! \nУ него осталось {hero_hp} хп')
+                    slowprint(f'{villain_name}, нормально так навалял Тимуру! \nУ него осталось {hero_hp} хп')
                     input()
                 else:
-                    slowprint(f'{villain_name} завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                    slowprint(f'{villain_name}, завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
                     input()
                     return 0
                     break
@@ -330,7 +330,7 @@ def wake_up(money, food, mood, shit_counter):
     a = input()
     print()
     
-    if a == '1' and mood > 0:
+    if a == '1' and mood >= 10:
         print('***Тимур сделал правильный выбор и решил заработать бабоса***')
         print()
         b = randint(0,4)
@@ -466,7 +466,7 @@ def game():
             if food < 0:
                 food = 0
 
-            new_mood = randrange(5,30,5)
+            new_mood = randrange(15,30,5)
             mood += new_mood
 
             print()
@@ -485,7 +485,7 @@ def game():
 
             shit_counter += 1
 
-            new_mood = randrange(0,10,5)
+            new_mood = randrange(0,5,5)
             mood += new_mood
 
             print()
@@ -521,7 +521,7 @@ def game():
             new_food = randint(1,4)
             food += new_food
 
-            new_mood = randrange(10,20,5)
+            new_mood = randrange(5,10,5)
             mood += new_mood
            
 
@@ -546,7 +546,7 @@ def game():
             if food < 0:
                 food = 0
 
-            new_mood = randrange(5,10,5)
+            new_mood = randrange(10,15,5)
             mood -= new_mood
 
             if mood < 0:
@@ -581,7 +581,7 @@ def game():
                     slowprint('- Выдать премию этому хлопчику!')
                     print()
                     new_money = randrange(100,200,50)
-                    new_mood = randrange(10,30,5)
+                    new_mood = randrange(5,10,5)
 
                     money += new_money
                     mood += new_mood
@@ -611,6 +611,11 @@ def game():
             mood -= new_mood
             print(f'Настроение ухудшилось на -{new_mood} по шкале Шишкаридзе!')
             print()
+            
+            if new_mood >= 20:
+                slowprint('- Бляяя..Да соберись ты, тряпка!')
+                print()
+            
             input('Пизданись головой об клаву, чтобы продолжить...')
         
 
@@ -628,7 +633,7 @@ def game():
         slowprint('Неожиданно, что-то склизкое схватило Тимура за яйца!')
         slowprint("- Неужели, это конец? - лишь промелькнуло в голове у Тимура, когда он резко потянулся рукой и схватил нечто отвратительное, но в то же время прекрасное демоническое запястье!")
         slowprint("Тимур с силой потянул на себя и к своему изумлению, разхреначив в хлам унитаз, достал существо ростом с человека, исторгающее пламя и зловонный запах! Но в прикольной шляпке.") 
-        slowprint("- Это КАКО-ДЕМОН 24 уровня!!!")
+        slowprint("- Это КАКО-ДЕМОН 10 уровня!!!")
         print()
         print('  (\-"````"-/)')
         print('  //^\    /^\\\\')
