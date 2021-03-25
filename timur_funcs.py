@@ -466,7 +466,7 @@ def game():
             if food < 0:
                 food = 0
 
-            new_mood = randrange(5,30,5)
+            new_mood = randrange(15,30,5)
             mood += new_mood
 
             print()
@@ -485,7 +485,7 @@ def game():
 
             shit_counter += 1
 
-            new_mood = randrange(0,10,5)
+            new_mood = randrange(0,5,5)
             mood += new_mood
 
             print()
@@ -521,7 +521,7 @@ def game():
             new_food = randint(1,4)
             food += new_food
 
-            new_mood = randrange(10,20,5)
+            new_mood = randrange(5,10,5)
             mood += new_mood
            
 
@@ -546,7 +546,7 @@ def game():
             if food < 0:
                 food = 0
 
-            new_mood = randrange(5,10,5)
+            new_mood = randrange(10,15,5)
             mood -= new_mood
 
             if mood < 0:
@@ -581,7 +581,7 @@ def game():
                     slowprint('- Выдать премию этому хлопчику!')
                     print()
                     new_money = randrange(100,200,50)
-                    new_mood = randrange(10,30,5)
+                    new_mood = randrange(5,10,5)
 
                     money += new_money
                     mood += new_mood
