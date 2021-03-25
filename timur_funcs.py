@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 from notebook.services.config import ConfigManager
 from IPython.display import clear_output
 from random import randint, randrange, random
@@ -184,6 +178,8 @@ def fight_with_demon():
             
                     hero_hp -= (villain_attack - hero_def)
                     my_hero['hp'] = hero_hp
+                    
+                    slowprint(f'{villain_name} херачит на {villain_attack} урона!')
 
                     if hero_hp > 0:
                         slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -208,6 +204,8 @@ def fight_with_demon():
             
                     hero_hp -= (villain_attack - hero_def)
                     my_hero['hp'] = hero_hp
+                    
+                    slowprint(f'{villain_name} херачит на {villain_attack} урона!')
 
                     if hero_hp > 0:
                         slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -237,6 +235,8 @@ def fight_with_demon():
             
                 hero_hp -= (villain_attack - hero_def)
                 my_hero['hp'] = hero_hp
+                
+                slowprint(f'{villain_name} херачит на {villain_attack} урона!')
 
                 if hero_hp > 0:
                     slowprint(f'{villain_name}, нормально так навалял Тимуру! \nОсталось {hero_hp} хп')
@@ -248,7 +248,7 @@ def fight_with_demon():
                     break
             
             else:
-                slowprint(f'{hero_name}, отбил удар {villain_name}!')
+                slowprint(f'{hero_name} отбил удар {villain_name}!')
                 input()
 
             my_hero['def'] = 10
@@ -271,12 +271,14 @@ def fight_with_demon():
             
                 hero_hp -= (villain_attack - hero_def)
                 my_hero['hp'] = hero_hp
+                
+                slowprint(f'{villain_name} херачит на {villain_attack} урона!')
 
                 if hero_hp > 0:
-                    slowprint(f'{villain_name}, нормально так навалял Тимуру! \nУ него осталось {hero_hp} хп')
+                    slowprint(f'{villain_name} нормально так навалял Тимуру! \nУ него осталось {hero_hp} хп')
                     input()
                 else:
-                    slowprint(f'{villain_name}, завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
+                    slowprint(f'{villain_name} завалил тебя, {hero_name}! \nТеперь для тебя вероятность потрахаться равна 0%!')
                     input()
                     return 0
                     break
@@ -300,7 +302,7 @@ def wake_up(money, food, mood, shit_counter):
             'Может, пивасика еще цепануть заодно?\nДостали уже звонками с работы..\nКогда уже от меня все отстанут?\nО, чипсики по акции!',
             'Тааак, что у нас тут...\nМммм, котлетки с пюрешкой!\nПочти как в столовке на работе!\nЗаебииииись',
             'Да они охуели!\nКурица по 150 рублей!\nНадо было на работке пожрать...\nА бля, уже ведь не кормят...Пидоры',
-            'Интересно, кто-нибудь заметит, если я пёрну по-тихоньку?\nВроде никто не заметил\nАхаха, лошары']
+            'Интересно, кто-нибудь заметит, если я пёрну потихоньку?\nВроде никто не заметил\nАхаха, лошары']
        
     weed = ['С другой стороны сегодня можно и почилить\n*достает пакет травки и раздувается*\n*включает порно с неграми*\n*расстраивается из-за того, что своя елда не такая большая*\n*разваливается на диване*',
             'С другой стороны сегодня можно и почилить\n*достает пакет травки и раздувается*\n*включает порно с чеченцами*\n*расстраивается, что в Таганроге нет овец*\n*разваливается на диване*',
@@ -312,7 +314,7 @@ def wake_up(money, food, mood, shit_counter):
             'Ну давай...\nродимая, давай...\nпожалуйста, вылазь, \nМРАЗЬ ТЫ ЕБАНАЯ СДОХНИ ТВАРЬ\nОхххх, вот это я понимаю кайф',
             'Хммм..\nВроде сегодня нормально выходит..\nНадо почаще насвай хавать!\nПойду Любе покажу, какие красивые ',
             'Получай, падла, теперь я знаю твою тайну!\nСраный демон!\nТебе осталось недолго\nПопрощайся со своими дружками!',
-            'Хорошо иногда так вот посидеть одному и подумать.\nЯйца почесать.\nВ носу поковырять.\nМ! Вкусная козюля!']
+            'Хорошо иногда так вот посидеть одному и подумать.\nЯйца почесать.\nВ носу поковырять.\nСука! Опять туалетная бумага закончилась!!!']
     
     slowprint('Тимууууур..Тимууууур...ТИМУР!')
     slowprint('Ты спишь?')
@@ -337,7 +339,7 @@ def wake_up(money, food, mood, shit_counter):
         return 1
     
     elif a == '2' and money > 100:
-        print('***Тимур решил не резать овцу, а купить еду как нормальные люди***')
+        print('***Тимур решил не резать барана, а купить еду как нормальные люди***')
         print()
         b = randint(0,4)
         slowprint(shop[b])
@@ -660,4 +662,3 @@ def game():
             print('GAME OVER!')
     
     
-
