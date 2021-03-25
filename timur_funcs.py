@@ -387,7 +387,7 @@ def game():
 
         pain = body[randint(0,8)]
 
-        slowprint(f'DAY {day}. У Тимура болит {pain}')
+        slowprint(f'ДЕНЬ {day}. У Тимура болит {pain}')
         print()
         if money > 0:
             print(f'### Зато {money} рублей в кармане!')
@@ -594,6 +594,10 @@ def game():
                     print()
                     new_mood = randrange(5,15,5)
                     mood -= new_mood
+                    
+                    if mood < 0:
+                        mood = 0
+                    
                     slowprint(f'Тимур расстроился из-за твоей тупости! -{new_mood} к настроению!')
                     print()
                     input('Пизданись головой об клаву, чтобы продолжить...')
@@ -609,6 +613,10 @@ def game():
             print()
             new_mood = randrange(10,30,5)
             mood -= new_mood
+            
+            if mood < 0:
+                mood = 0
+            
             print(f'Настроение ухудшилось на -{new_mood} по шкале Шишкаридзе!')
             print()
             
